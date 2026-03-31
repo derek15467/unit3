@@ -34,6 +34,12 @@ void mouseReleased() {
    selectedColor = blue; }
    
   //lightblue button
-  
+ if (dist(150, 400, mouseX, mouseY) < 50) {
+   selectedColor = lightBlue; }
+   
   //lightestblue botton
+ if (dist(150, 600, mouseX, mouseY) < 50) {
+   selectedColor = lightestBlue; }
+   
+
 }
