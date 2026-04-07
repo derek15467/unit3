@@ -20,22 +20,20 @@ void draw() {
     
   //blue button
   fill(blue);
-  tactile(200, 280);
+  tactile(600,200);
   rect(600, 200, 150, 80);
 
   //lightbluebutton
   
-  stroke(black);
-  tactile(400, 480);
-  stroke(black);
   fill(lightBlue);
+  tactile(600, 400);
   rect(600, 400, 150, 80);
 
   //lightestblue button
-  tactile(600, 680);
-  stroke(black);
+  
   
   fill(lightestBlue);
+  tactile(600, 600);
   rect(600, 600, 150, 80);
 
   //indiactor
@@ -59,7 +57,8 @@ void mouseReleased() {
 }
 
 void tactile(int x, int y) {
-      if(mouseX > 600 && mouseX < 750 && mouseY > 200 && mouseY < 280) {
+      if(mouseX > x && mouseX < x + 150 && mouseY > y && mouseY < y + 80)
+     {
     stroke(white); }
     else {
       stroke(black); }
