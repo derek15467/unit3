@@ -6,7 +6,6 @@ color white = #FFFFFF;
 color black = (0);
 
 
-
 void setup() {
   size(800, 800);
   background(#C95CEA);
@@ -15,23 +14,18 @@ void setup() {
 
 void draw() {
   strokeWeight(1.5);
-
-
-    
+  
   //blue button
   fill(blue);
   tactile(600,200);
   rect(600, 200, 150, 80);
 
-  //lightbluebutton
-  
+  //lightbluebutton 
   fill(lightBlue);
   tactile(600, 400);
   rect(600, 400, 150, 80);
 
-  //lightestblue button
-  
-  
+  //lightestblue button  
   fill(lightestBlue);
   tactile(600, 600);
   rect(600, 600, 150, 80);
@@ -61,6 +55,5 @@ void tactile(int x, int y) {
      {
     stroke(white); }
     else {
-      stroke(black); }
-      
+      stroke(black); }     
 }
