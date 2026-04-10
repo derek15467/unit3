@@ -59,13 +59,17 @@ void draw() {
   tactile(200, 300, 70);
   circle(200, 300, 70);
   
-  //thickness slider
+  //thickness slider c
   stroke(black);
-  line(50, 520, 350, 520);
-  circle(sliderX, 520, 40);
+  line(50, 550, 350, 550);
+  circle(sliderX, 550, 40);
+  
+  //indicator
+  stroke(black);
+  fill(selectedColor);
+  rect(200, 375, 125, 80);
   
 // eraser
-
   if(mouseX > 273 && mouseX < 323 && mouseY > 263 && mouseY < 333) {
     stroke(white); }
     else {
@@ -75,8 +79,13 @@ void draw() {
   fill(white);
   rect(273, 285, 50, 50);
 
+//text
+  textSize(18);
+  fill(white);
+  text("Current Colour:", 50, 425);
+  text("Brush Thickness:", 135, 520);
       
-}
+} //END OF DRAW ===================================================================================
 
 void mouseReleased() {
   //red button
@@ -115,7 +124,7 @@ void mouseDragged() {
   strokeWeight(thickness);
   line(pmouseX, pmouseY, mouseX, mouseY); }
   
-  if (mouseX > 50 && mouseX < 350 && mouseY > 475 && mouseY < 575) {
+  if (mouseX > 50 && mouseX < 350 && mouseY > 500 && mouseY < 600) {
     sliderX = mouseX; }
     thickness = sliderX;
     thickness = map(sliderX, 50, 350, 0.4, 100);
@@ -126,8 +135,7 @@ void tactile(int x, int y, int r) {
     stroke(white);
 }
   else {
-      stroke(black); }
-    
+      stroke(black); }   
 }
 
   
