@@ -74,11 +74,7 @@ void draw() {
   rect(200, 375, 125, 80);
 
   // eraser
-  if (mouseX > 273 && mouseX < 323 && mouseY > 263 && mouseY < 333) {
-    stroke(white);
-  } else {
-    stroke(black);
-  }
+  tactileRect(273, 263, 50, 70);
   fill(#F588E8);
   rect(273, 263, 50, 70);
   fill(white);
@@ -92,7 +88,7 @@ void draw() {
 
   //stamp
   fill(white);
-  noStroke();
+  tactileRect(50, 610, 100, 100);
   rect(50, 610, 100, 100);
   duckOnOff();
   image(duck, 50, 610, 100, 100);
@@ -104,48 +100,62 @@ void mouseReleased() {
   //red button
   if (dist(100, 100, mouseX, mouseY) < 35) {
     selectedColor = red;
+    duckOn = false;
   }
 
   if (dist(200, 100, mouseX, mouseY) < 35) {
     selectedColor = orange;
+    duckOn = false;
   }
 
   if (dist(300, 100, mouseX, mouseY) < 35) {
     selectedColor = yellow;
+    duckOn = false;
   }
 
   if (dist(100, 200, mouseX, mouseY) < 35) {
     selectedColor = green;
+    duckOn = false;
   }
 
   if (dist(200, 200, mouseX, mouseY) < 35) {
     selectedColor = blue;
+    duckOn = false;
   }
 
   if (dist(300, 200, mouseX, mouseY) < 35) {
     selectedColor = purple;
+    duckOn = false;
   }
 
   if (dist(100, 300, mouseX, mouseY) < 35) {
     selectedColor = brown;
+    duckOn = false;
   }
 
   if (dist(200, 300, mouseX, mouseY) < 35) {
     selectedColor = black;
+    duckOn = false;
   }
 
   if (mouseX > 273 && mouseX < 323 && mouseY > 263 && mouseY < 333) {
     selectedColor = white;
+    duckOn = false;
   }
 
   //duck stamp
-  if (mouseX > 50 && mouseX < 150 && mouseY > 510 && mouseY > 610) {
-    duckOn = !duckOn; }
+  if (mouseX > 50 && mouseX < 150 && mouseY > 610 && mouseY < 710) {
+    duckOn = !duckOn; 
+    }
+    
+
+  else if(duckOn && mouseX > 400) {
+    image(duck, mouseX - 50, mouseY - 50, 100, 100); }
 
 }
 
 void mouseDragged() {
-  if (mouseX > 400) {
+  if (!duckOn && mouseX > 400) {
     stroke(selectedColor);
     strokeWeight(thickness);
     line(pmouseX, pmouseY, mouseX, mouseY);
@@ -168,11 +178,18 @@ void tactile(int x, int y, int r) {
   }
 }
 
-void duckOnOff() {
+  void duckOnOff() {
   if (duckOn == true) {
     stroke(255, 0, 0);
     strokeWeight(5); }
     else {
       stroke(0);
       strokeWeight(1); }
-}
+  }
+
+  void tactileRect(int x, int y, int w, int h) {
+    if (mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h) {
+      stroke(white); }
+      else {
+        stroke(black); }
+  }
