@@ -80,12 +80,6 @@ void draw() {
   fill(white);
   rect(273, 285, 50, 50);
 
-  //text
-  textSize(18);
-  fill(white);
-  text("Current Colour:", 50, 425);
-  text("Brush Thickness:", 135, 520);
-
   //stamp
   fill(white);
   tactileRect(50, 610, 100, 100);
@@ -93,6 +87,16 @@ void draw() {
   duckOnOff();
   image(duck, 50, 610, 100, 100);
   
+  //clear button
+   rect(50, 750, 300, 50);
+   
+    //text
+  textSize(18);
+  fill(white);
+  text("Current Colour:", 50, 425);
+  text("Brush Thickness:", 135, 520);
+  fill(black);
+  text("Clear", 180, 780);
   
 } //END OF DRAW ===================================================================================
 
@@ -137,6 +141,10 @@ void mouseReleased() {
     selectedColor = black;
     duckOn = false;
   }
+  
+   //clear button
+  if (mouseX > 50 && mouseX < 350 && mouseY > 750 && mouseY < 800) {
+    background(white); }
 
   if (mouseX > 273 && mouseX < 323 && mouseY > 263 && mouseY < 333) {
     selectedColor = white;
@@ -193,3 +201,4 @@ void tactile(int x, int y, int r) {
       else {
         stroke(black); }
   }
+  
