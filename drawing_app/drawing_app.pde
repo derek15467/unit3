@@ -12,6 +12,7 @@ float sliderX;
 float thickness;
 PImage duck;
 boolean duckOn;
+PImage savedDrawing;
 
 void setup() {
   size(1920, 1080);
@@ -86,18 +87,32 @@ void draw() {
   rect(50, 610, 100, 100);
   duckOnOff();
   image(duck, 50, 610, 100, 100);
-  
+
   //clear button
-   rect(50, 750, 300, 50);
-   
-    //text
+  rect(50, 750, 300, 50);
+
+  //text
   textSize(18);
   fill(white);
   text("Current Colour:", 50, 425);
   text("Brush Thickness:", 135, 520);
   fill(black);
   text("Clear", 180, 780);
-  
+
+  //save button
+  fill(#90EE90);
+  tactileRect(50, 850, 140, 50);
+  rect(50, 850, 140, 50);
+
+  //load button
+  fill(#87CEFA);
+  tactileRect(210, 850, 140, 50);
+  rect(210, 850, 140, 50);
+
+  //button text
+  fill(black);
+  text("Save", 100, 882);
+  text("Load", 260, 882);
 } //END OF DRAW ===================================================================================
 
 void mouseReleased() {
@@ -141,25 +156,43 @@ void mouseReleased() {
     selectedColor = black;
     duckOn = false;
   }
-  
-   //clear button
+
+  //clear button
   if (mouseX > 50 && mouseX < 350 && mouseY > 750 && mouseY < 800) {
-    background(white); }
+    background(white);
+  }
 
   if (mouseX > 273 && mouseX < 323 && mouseY > 263 && mouseY < 333) {
     selectedColor = white;
     duckOn = false;
   }
 
+
+
+  //save button
+  if (mouseX > 50 && mouseX < 190 && mouseY > 850 && mouseY < 900) {
+
+    //save only drawing area
+    savedDrawing = get(400, 0, width-400, height);
+
+    //also save as file
+    savedDrawing.save("myDrawing.png");
+  }
+
+  //load button
+  if (mouseX > 210 && mouseX < 350 && mouseY > 850 && mouseY < 900) {
+
+    if (savedDrawing != null) {
+      image(savedDrawing, 400, 0);
+    }
+  }
+
   //duck stamp
   if (mouseX > 50 && mouseX < 150 && mouseY > 610 && mouseY < 710) {
-    duckOn = !duckOn; 
-    }
-    
-
-  else if(duckOn && mouseX > 400) {
-    image(duck, mouseX - 50, mouseY - 50, 100, 100); }
-
+    duckOn = !duckOn;
+  } else if (duckOn && mouseX > 400) {
+    image(duck, mouseX - 50, mouseY - 50, 100, 100);
+  }
 }
 
 void mouseDragged() {
@@ -174,7 +207,6 @@ void mouseDragged() {
   }
   thickness = sliderX;
   thickness = map(sliderX, 50, 350, 0.4, 100);
-
 }
 
 
@@ -186,19 +218,20 @@ void tactile(int x, int y, int r) {
   }
 }
 
-  void duckOnOff() {
+void duckOnOff() {
   if (duckOn == true) {
     stroke(255, 0, 0);
-    strokeWeight(5); }
-    else {
-      stroke(0);
-      strokeWeight(1); }
+    strokeWeight(5);
+  } else {
+    stroke(0);
+    strokeWeight(1);
   }
+}
 
-  void tactileRect(int x, int y, int w, int h) {
-    if (mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h) {
-      stroke(white); }
-      else {
-        stroke(black); }
+void tactileRect(int x, int y, int w, int h) {
+  if (mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h) {
+    stroke(white);
+  } else {
+    stroke(black);
   }
-  
+}
